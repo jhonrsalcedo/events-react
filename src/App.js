@@ -47,7 +47,9 @@ class App extends Component {
         <Header
           title ='Eventos'
         />
-        <Formcategory />
+        <Formcategory 
+          categories ={this.state.categoriesResp}
+        />
       </div>
     );
   }
