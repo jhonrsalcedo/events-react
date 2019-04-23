@@ -47,9 +47,13 @@ class App extends Component {
         <Header
           title ='Eventos'
         />
+        <div className="uk-container">
         <Formcategory 
           categories ={this.state.categoriesResp}
         />
+
+        </div>
+       
       </div>
     );
   }
