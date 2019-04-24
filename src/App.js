@@ -40,6 +40,10 @@ class App extends Component {
       })
       
   }
+  //obtener evento del formulario
+  getEvent = async (searchEvent) => {
+    console.log(searchEvent);
+  }
 
   render() {
     return (
@@ -50,6 +54,7 @@ class App extends Component {
         <div className="uk-container">
         <Formcategory 
           categories ={this.state.categoriesResp}
+          getEvent ={this.getEvent}
         />
 
         </div>

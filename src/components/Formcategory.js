@@ -4,9 +4,26 @@ class Formcategory extends Component {
     constructor(props){
         super(props);
         this.state ={
-
+            nameValue:'',
+            categoryValue:''
         }
     }
+
+    //creamos un metodo findEvents
+    findEvent = (e) => {
+        e.preventDefault();
+
+        //creamos el objeto 
+        const dataEvent = this.state
+       
+        //console.log(dataEvent);
+
+        //y lo pasamos por props a App.js
+            this.props.getEvent(dataEvent);
+
+    }
+
+
     //de esta forma podremos ver las key 
     showOptions = (key) =>{
         //console.log(key)
@@ -24,24 +41,29 @@ class Formcategory extends Component {
             )
 
     }
+    handleChange = (e) =>{
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
     render(){
         //creamos una const para obtener la posicion["0", "1", "2", "3", "4", "5"]
         const categoriePosition = Object.keys(this.props.categories);
         //console.log(categorySelect)
         return(
-        <form>
+        <form onSubmit={this.findEvent}>
             <fieldset className="uk-fieldset uk-margin">
                 <legend className="uk-legend uk-text-center">
                     Busca tu evento por nombre o categoría
                 </legend>
                 <div className="uk-column-1-3@m uk-margin">
                     <div className="uk-margin" uk-margin="true">
-                    <input className="uk-input" type="text" placeholder="Nombre de Evento o Ciudad" />
+                    <input className="uk-input" type="text" placeholder="Nombre de Evento o Ciudad" name="nameValue" onChange={this.handleChange} value={this.state.nameValue}/>
 
                     </div>
                     <div className="uk-margin" uk-margin="true">
                     
-                    <select className="uk-select">
+                    <select className="uk-select" name="categoryValue" onChange={this.handleChange} value={this.state.categoryValue}>
                         {categoriePosition.map(this.showOptions)}
                     </select>
 
