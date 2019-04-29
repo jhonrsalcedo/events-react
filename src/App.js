@@ -8,10 +8,12 @@ class App extends Component {
   constructor(props){
     super(props);
       this.state={
-        categoriesResp:[]
+        categoriesResp:[],
+        eventResp:[]
       }
   }
-    token = 'AC6B2UWEROHM2XESUDY7'
+    token = 'AC6B2UWEROHM2XESUDY7';
+    order ='date';
   componentDidMount(){
     this.getCategory();
   }
@@ -30,8 +32,12 @@ class App extends Component {
   // }
 
   // otra forma de utilizar async await
+
+  //https://www.eventbriteapi.com/v3/events/search/?q=Bitcoin&categories=101&token=AC6B2UWEROHM2XESUDY7
+
+  //https://www.eventbriteapi.com/v3/events/search/?q=Bitcoin&sort_by=date&categories=101&token=AC6B2UWEROHM2XESUDY7
   getCategory = async () =>{
-    const url =`https://www.eventbriteapi.com/v3/categories/?token=${this.token}&locale=es_ES`;
+    let url =`https://www.eventbriteapi.com/v3/categories/?token=${this.token}&locale=es_ES`;
     const response = await fetch(url)
     const categoriesResp = await response.json()
       //console.log(categoriesResp.categories) 
@@ -42,7 +48,13 @@ class App extends Component {
   }
   //obtener evento del formulario
   getEvent = async (searchEvent) => {
-    console.log(searchEvent);
+    let url = `https://www.eventbriteapi.com/v3/events/search/?q=${searchEvent.nameValue}&sort_by=date&categories=${searchEvent.categoryValue}&token=AC6B2UWEROHM2XESUDY7`;
+    const response = await fetch(url)
+    const eventResp = await response.json()
+    this.setState({
+      eventResp: eventResp.events
+    })
+//console.log(eventResp.events)
   }
 
   render() {
