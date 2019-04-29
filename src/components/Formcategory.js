@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Formcategory extends Component {
     constructor(props){
@@ -81,5 +82,8 @@ class Formcategory extends Component {
     };
 
 }
-
+Formcategory.propTypes = {
+    getEvent: PropTypes.func.isRequired,
+    categories: PropTypes.array.isRequired
+}
 export default Formcategory;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const Events = (props) =>{
@@ -18,10 +19,10 @@ if(!name) return null;
         <div>
             <div className="uk-card uk-card-default">
                 {/* necesitamos llamar la img url para mostrarla */}
-                    <div className="uk-card-media-top">
+                    <div className="uk-card-media-top ">
                     {/* en caso que no exista el logo realizamos un condicional if si y ? entonces */}
                     {props.info.logo !== null ?
-                    <img src={props.info.logo.url} alt={props.info.name.text} />
+                    <img className="uk-align-center" src={props.info.logo.url} alt={props.info.name.text} />
                     : ''
                     }
                     
@@ -30,9 +31,17 @@ if(!name) return null;
                     <h3 className="uk-card-title">{props.info.name.text}</h3>
                         <p>{props.info.summary}</p>
                     </div>
+                    <div className="uk-card-footer">
+                        <a className="uk-button uk-button-secondary" href={props.info.url} target="_blank" rel="noopener noreferrer">
+                        ver mas </a>
+                    </div>
             </div>
         </div>
     )
 }
 
+//documentamos por Proptypes
+Events.propTypes={
+    info: PropTypes.object.isRequired
+}
 export default Events;
