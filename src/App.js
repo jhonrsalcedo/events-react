@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import Formcategory from './components/Formcategory';
+import EventsCard from './components/EventsCard';
 
 
 // cosumimos la api eventbrite www.eventbrite.com
@@ -48,7 +49,7 @@ class App extends Component {
   }
   //obtener evento del formulario
   getEvent = async (searchEvent) => {
-    let url = `https://www.eventbriteapi.com/v3/events/search/?q=${searchEvent.nameValue}&sort_by=date&categories=${searchEvent.categoryValue}&token=AC6B2UWEROHM2XESUDY7`;
+    let url = `https://www.eventbriteapi.com/v3/events/search/?q=${searchEvent.nameValue}&sort_by=date&categories=${searchEvent.categoryValue}&token=${this.token}&locale=es_ES`;
     const response = await fetch(url)
     const eventResp = await response.json()
     this.setState({
@@ -68,7 +69,9 @@ class App extends Component {
           categories ={this.state.categoriesResp}
           getEvent ={this.getEvent}
         />
-
+        <EventsCard
+          eventsCards = {this.state.eventResp}
+        />
         </div>
        
       </div>
