@@ -7,6 +7,7 @@ class EventsCard extends Component {
             <div className="uk-child-width-1-4@m" uk-grid="true">
                 {Object.keys(this.props.eventsCards).map(key =>(
                     <Events
+                    key={key}
                         info={this.props.eventsCards[key]}
                     />
                 ))}
